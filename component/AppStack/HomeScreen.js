@@ -76,10 +76,13 @@ class HomeScreen extends Component {
     }
 
 
+    showProfile=()=>{
+        this.props.navigation.navigate('Detail')
+    }
     render() {
         return (
             <View style={{ flex: 1, backgroundColor: 'white', paddingTop: '10%' }}>
-                <StatusBar translucent backgroundColor='#ff2e66' />
+                <StatusBar  backgroundColor='#ff2e66' />
                 <View style={{ flex: 0.3, width: '100%' }}>
                     <Carousel
                         ref={(c) => { this._carousel = c; }}
@@ -117,15 +120,16 @@ class HomeScreen extends Component {
                             <FlatList
                                 data={this.state.cleaner}
                                 horizontal={true}
+                                inverted={true}
                                 keyExtractor={item => item.id}
                                 renderItem={({ item }) => {
                                     return (
-                                        <View style={styles.flatitem}>
+                                        <TouchableOpacity onPress={this.showProfile} style={styles.flatitem}>
                                             <Image source={{ uri: item.img }} style={{ width: '100%', height: 100 }} />
                                             <Text>موضوع : {item.title}</Text>
                                             <Text>منطقه : {item.loc}</Text>
                                             <Text>هزینه : {item.price}</Text>
-                                        </View>
+                                        </TouchableOpacity>
                                     )
                                 }}
                             />
@@ -134,15 +138,16 @@ class HomeScreen extends Component {
                             <FlatList
                                 data={this.state.cleaner}
                                 horizontal={true}
+                                inverted={true}
                                 keyExtractor={item => item.id}
                                 renderItem={({ item }) => {
                                     return (
-                                        <View style={styles.flatitem}>
+                                        <TouchableOpacity onPress={this.showProfile} style={styles.flatitem}>
                                             <Image source={{ uri: item.img }} style={{ width: '100%', height: 100 }} />
                                             <Text>موضوع : {item.title}</Text>
                                             <Text>منطقه : {item.loc}</Text>
                                             <Text>هزینه : {item.price}</Text>
-                                        </View>
+                                        </TouchableOpacity>
                                     )
                                 }}
                             />
@@ -151,15 +156,16 @@ class HomeScreen extends Component {
                             <FlatList
                                 data={this.state.cleaner}
                                 horizontal={true}
+                                inverted={true}
                                 keyExtractor={item => item.id}
                                 renderItem={({ item }) => {
                                     return (
-                                        <View style={styles.flatitem}>
+                                        <TouchableOpacity onPress={this.showProfile} style={styles.flatitem}>
                                             <Image source={{ uri: item.img }} style={{ width: '100%', height: 100 }} />
                                             <Text>موضوع : {item.title}</Text>
                                             <Text>منطقه : {item.loc}</Text>
                                             <Text>هزینه : {item.price}</Text>
-                                        </View>
+                                        </TouchableOpacity>
                                     )
                                 }}
                             />

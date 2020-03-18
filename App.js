@@ -25,7 +25,7 @@ import { Login } from './component/AuthStack/Login';
 import { Auth } from './component/AuthStack/Auth';
 import { Walk } from './component/Walk';
 import { LoadScreen } from './component/LoadScreen';
-
+import { EditProfile } from './component/AppStack/EditProfile';
 import {
   SafeAreaView,
   StyleSheet,
@@ -34,6 +34,10 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
+import { AddLoaction } from './component/AppStack/AddLocation';
+import { DetailScreen } from './component/AppStack/DetailScreen';
+import {ShareDetail} from './component/AppStack/ShareDetail';
+
 
 class App extends Component {
   constructor(props) {
@@ -60,11 +64,13 @@ class App extends Component {
 
 const TabNavigator = createMaterialTopTabNavigator(
   {
+   
     Pro: { screen: ProfileScreen, navigationOptions: { title: 'کاربری' } },
     Search: { screen: SearchScreen, navigationOptions: { title: 'جستجو' } },
     Add: { screen: AddScreen, navigationOptions: { title: 'آگهی' } },
     Cat: { screen: CatScreen, navigationOptions: { title: 'دسته بندی' } },
     Home: { screen: HomeScreen, navigationOptions: { title: 'خانه' } },
+   
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -122,7 +128,7 @@ const AuthStack = createStackNavigator(
     headerMode: 'none',
   });
 
-const AppStack = createStackNavigator({ Tab: TabNavigator }, {
+const AppStack = createStackNavigator({ Tab: TabNavigator , Edit : EditProfile ,Loc: AddLoaction , Detail : DetailScreen , Share: ShareDetail }, {
   headerMode: 'none',
   initialRouteName: 'Tab'
 });
