@@ -16,9 +16,9 @@ class ShareDetail extends Component {
 
         this.state = {
             isModalVisible: false,
-            Adv: { subject: "", loc: "", about: "", email: "", field: '', cost: '', phone: "" },
+            Adv: { subject: "", loc: "", desc: "", place: "", phone: "" },
 
-            error: { subject: "", loc: "", about: "", email: "", field: '', cost: '', phone: "" },
+            error:{ subject: "", loc: "", desc: "", place: "", phone: "" },
 
             image: null,
             images: null
@@ -28,25 +28,23 @@ class ShareDetail extends Component {
 
     _confirmButton = () => {
 
-        if (this.state.Adv.subject === "" || this.state.Adv.email === "" || this.state.Adv.phone === "" || this.state.Adv.about === "" || this.state.Adv.address) {
+        if (this.state.Adv.subject === "" || this.state.Adv.place === "" || this.state.Adv.phone === "" || this.state.Adv.desc ) {
 
             let subject = "";
-            let email = "";
+            let desc = "";
             let phone = "";
-            let about = "";
+            let place = "";
 
 
             if (this.state.Adv.subject === "") { subject = "نام را وارد کنید" };
 
-            if (this.state.Adv.email === "") { NationalCode = "ایمیل را وارد کنید" };
+            if (this.state.Adv.place === "") { place = "محله را وارد کنید" };
 
-            if (this.state.Adv.phone === "") { Subject = "موبایل خود را وارد کنید" };
+            if (this.state.Adv.phone === "") { phone = "موبایل خود را وارد کنید" };
 
-            if (this.state.Adv.about === "") { City = "درباره من نمی تواند خالی باشد" };
+            if (this.state.Adv.desc === "") { desc = "توضیحات من نمی تواند خالی باشد" };
 
-            if (this.state.Adv.address === "") { Phone = "آدرس خود را وارد کنید" };
-
-            this.setState({ error: { ...this.state.error, subject: subject, email: email, phone: phone, about: about, address: address } });
+            this.setState({ error: { ...this.state.error, subject: subject, place: place, phone: phone, desc: desc } });
 
         } else {
 
@@ -58,6 +56,7 @@ class ShareDetail extends Component {
 
     async _savePersonalData() {
         AsyncStorage.setItem('Adv', this.state.Adv)
+        this.props.navigation.goBack()
         // this.setState({ saveLoading: true });
 
         // let fetchData = new FormData();
@@ -173,7 +172,7 @@ class ShareDetail extends Component {
                             tintColor='#ff1654'
                             maxLength={40}
                             error={this.state.error.subject}
-                            onSubmitEditing={() => this.email.focus()}
+                            onSubmitEditing={() => this.phone.focus()}
                             onChangeText={(text) => this.setState({ Adv: { ...this.state.Adv, subject: text }, error: { ...this.state.error, subject: "" } })}
                             value={this.state.Adv.subject}
                         />
@@ -195,13 +194,13 @@ class ShareDetail extends Component {
                             tintColor='#ff1654'
                             maxLength={11}
                             error={this.state.error.phone}
-                            onSubmitEditing={() => this.field.focus()}
+                            onSubmitEditing={() => this.place.focus()}
                             onChangeText={(text) => this.setState({ Adv: { ...this.state.Adv, phone: text }, error: { ...this.state.error, phone: "" } })}
                             value={this.state.Adv.phone}
                         />
                         <TextField
                             label='انتخاب محله'
-                            ref={(ref) => this.about = (ref)}
+                            ref={(ref) => this.place = (ref)}
                             fontSize={18}
                             labelOffset={{ x1: 190 }}
                             style={{ fontFamily: 'IRANSansMobile_Light', fontSize: 15 }}
@@ -214,17 +213,17 @@ class ShareDetail extends Component {
                             keyboardType={'default'}
                             returnKeyType={'next'}
                             multiline
-                            error={this.state.error.about}
-                            onSubmitEditing={() => this.address.focus()}
-                            onChangeText={(text) => this.setState({ Adv: { ...this.state.Adv, about: text }, error: { ...this.state.error, about: "" } })}
-                            value={this.state.Adv.about}
+                            error={this.state.error.place}
+                            onSubmitEditing={() => this.desc.focus()}
+                            onChangeText={(text) => this.setState({ Adv: { ...this.state.Adv, place: text }, error: { ...this.state.error, place: "" } })}
+                            value={this.state.Adv.place}
                         />
 
 
                     </View>
                     <TextField
                         label='توضیحات'
-                        ref={(ref) => this.about = (ref)}
+                        ref={(ref) => this.desc = (ref)}
                         fontSize={18}
                         labelOffset={{ x1: 190 }}
                         style={{ fontFamily: 'IRANSansMobile_Light', fontSize: 15 }}
@@ -237,10 +236,9 @@ class ShareDetail extends Component {
                         keyboardType={'default'}
                         returnKeyType={'next'}
                         multiline
-                        error={this.state.error.about}
-                        onSubmitEditing={() => this.address.focus()}
-                        onChangeText={(text) => this.setState({ Adv: { ...this.state.Adv, about: text }, error: { ...this.state.error, about: "" } })}
-                        value={this.state.Adv.about}
+                        error={this.state.error.desc}
+                        onChangeText={(text) => this.setState({ Adv: { ...this.state.Adv, desc: text }, error: { ...this.state.error, desc: "" } })}
+                        value={this.state.Adv.desc}
                     />
 
                     <View style={{ flexDirection: 'row-reverse', justifyContent: 'space-around', marginVertical: 20 }}>
